@@ -1,13 +1,16 @@
-import { put, call, takeEvery, select } from "redux-saga/effects";
+import { put, call, takeEvery } from "redux-saga/effects";
 
 import { setMovies, setError } from "../actions";
 import { MOVIES } from "../constants";
 import { fetchMovies } from "../api/index.js";
 
+//const page;
+
 export function* handleMoviesLoad() {
   try {
-    console.log("1");
+    //console.log("1");
     const movies = yield call(fetchMovies);
+    //console.log(page);
     yield put(setMovies(movies));
   } catch (error) {
     yield put(setError(error.toString()));
@@ -15,5 +18,6 @@ export function* handleMoviesLoad() {
 }
 
 export default function* watchMoviesLoad() {
-  yield takeEvery(MOVIES.LOAD, handleMoviesLoad);
+  const { page } = yield takeEvery(MOVIES.LOAD, handleMoviesLoad);
+  console.log(page);
 }

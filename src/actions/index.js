@@ -7,6 +7,7 @@ const loadMovies = () => ({
 const setMovies = movies => ({
   type: MOVIES.LOAD_SUCCESS,
   movies
+  //pageNumber
 });
 
 const setError = error => ({

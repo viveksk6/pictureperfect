@@ -14,6 +14,14 @@
   width: 5px;
 }
 
+.certificate {
+  position: absolute;
+  top: 39vh;
+  left: 25vw;
+  color: #ffffff;
+  font-family: Arial;
+}
+
 .vl {
   border-left: 6px solid green;
   height: 500px;
@@ -27,6 +35,26 @@
   align-items: left;
 
   color: white;
+}
+
+.bg-image {
+  height: 45vh;
+  width: 100vw;
+}
+
+.movie-image {
+  height: 50vh;
+  width: 20vw;
+  position: absolute;
+  top: 20vh;
+  left: 3vw;
+}
+
+.movie-name {
+  position: absolute;
+  top: 32vh;
+  left: 25vw;
+  color: #ffffff;
 }
 
 .movie {
@@ -55,9 +83,16 @@
 }
 
 .left-top3 {
-  margin-left: 45vw;
+  margin-left: 38vw;
   margin-top: 3vh;
   position: relative;
+}
+
+.shows-button {
+  width: 10vw;
+  position: absolute;
+  top: 50vh;
+  left: 87vw;
 }
 
 .App-link {

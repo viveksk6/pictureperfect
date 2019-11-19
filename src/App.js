@@ -2,20 +2,15 @@ import React, { Component } from "react";
 import { Provider } from "react-redux";
 import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./navigation";
-import Paginate from "./pagination";
-import Cards from "./cards";
+import Home from "./home";
 import configureStore from "./store";
+import movieDetails from "./movieDetails";
+import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
 const store = configureStore();
 
 class App extends Component {
-  state = {
-    counter: 0
-  };
-  getName = () => {
-    return "Now Showing";
-  };
   render() {
     return (
       <Provider store={store}>
@@ -23,17 +18,16 @@ class App extends Component {
           <div className="left-top0">
             <Navigation />
           </div>
-
-          <div className="left-top">
-            <h2>{this.getName()}</h2>
-          </div>
-
-          <div className="left-top2">
-            <Cards />
-          </div>
-
-          <div className="left-top3">
-            <Paginate />
+          <div>
+            <Router>
+              <Link to="/"></Link>
+              <Switch>
+                <Route exact path="/">
+                  <Home />
+                </Route>
+                <Route path="/:movieID" component={movieDetails} exact />
+              </Switch>
+            </Router>
           </div>
         </div>
       </Provider>

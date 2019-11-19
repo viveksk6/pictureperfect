@@ -2,26 +2,28 @@ import React, { Component } from "react";
 import CardDeck from "react-bootstrap/CardDeck";
 import Card from "react-bootstrap/Card";
 import { connect } from "react-redux";
-import { setMovies } from "./actions/index.js";
-import movieData from "./movieData.json";
+import { Link } from "react-router-dom";
+import { loadMovies } from "./actions";
 
 class Cards extends Component {
   componentDidMount() {
-    //this.setState({ movies: movieData });
+    this.props.loadMovies();
   }
 
   render() {
     const { movies } = this.props.movies;
-    const { dispatch } = this.props;
+    //const { dispatch } = this.props;
     //dispatch(setMovies(movieData));
-    //console.log(movies);
+    //console.log(this.props.movies);
     //console.log(dispatch);
     return (
       <CardDeck>
         {movies.map((x, index) => {
           return (
             <Card key={index}>
-              <Card.Img variant="top" src={x.imgpath} className="movie" />
+              <Link to={{ pathname: `/${x.title}` }}>
+                <Card.Img variant="top" src={x.img} className="movie" />
+              </Link>
               <Card.Body>
                 <Card.Title>{x.title}</Card.Title>
                 <Card.Subtitle className="mb-2 text-muted">
@@ -40,7 +42,8 @@ const mapStateToProps = ({ movies }) => ({
   movies
 });
 
-export default connect(
-  mapStateToProps,
-  null
-)(Cards);
+const mapDispatchToProps = dispatch => ({
+  loadMovies: () => dispatch(loadMovies())
+});
+
+export default connect(mapStateToProps, mapDispatchToProps)(Cards);
