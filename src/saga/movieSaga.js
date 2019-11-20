@@ -13,7 +13,7 @@ export function* handleMoviesLoad(pageNo) {
     }
 
     const movies = yield call(fetchMovies, p);
-    console.log(pageNo);
+    //console.log(pageNo);
     yield put(setMovies(movies, p));
   } catch (error) {
     yield put(setError(error.toString()));

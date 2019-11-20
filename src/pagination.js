@@ -7,12 +7,12 @@ import Pagination from "react-js-pagination";
 class Paginate extends Component {
   componentDidMount = () => {
     loadMovies(1);
-    console.log(this.props.activePage);
+    //console.log(this.props.activePage);
   };
   handlePageChange = page => {
     const { loadMovies } = this.props;
     loadMovies(page);
-    console.log(this.props.activePage);
+    //console.log(this.props.activePage);
   };
 
   render() {
