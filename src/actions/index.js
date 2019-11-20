@@ -1,13 +1,14 @@
 import { MOVIES } from "../constants";
 
-const loadMovies = () => ({
-  type: MOVIES.LOAD
+const loadMovies = page => ({
+  type: MOVIES.LOAD,
+  page
 });
 
-const setMovies = movies => ({
+const setMovies = (movies, pageNumber) => ({
   type: MOVIES.LOAD_SUCCESS,
-  movies
-  //pageNumber
+  movies,
+  pageNumber
 });
 
 const setError = error => ({

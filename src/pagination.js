@@ -7,13 +7,12 @@ import Pagination from "react-js-pagination";
 class Paginate extends Component {
   componentDidMount = () => {
     loadMovies(1);
+    console.log(this.props.activePage);
   };
-  handlePageChange = pageNumber => {
+  handlePageChange = page => {
     const { loadMovies } = this.props;
-    console.log(`active page is ${pageNumber}`);
-    //this.setState({ activePage: pageNumber });
-
-    loadMovies(pageNumber);
+    loadMovies(page);
+    console.log(this.props.activePage);
   };
 
   render() {
@@ -24,9 +23,9 @@ class Paginate extends Component {
           linkClass="page-link"
           disabledClass="disabled"
           activePage={this.props.activePage}
-          itemsCountPerPage={10}
-          totalItemsCount={450}
-          pageRangeDisplayed={5}
+          itemsCountPerPage={3}
+          totalItemsCount={6}
+          pageRangeDisplayed={2}
           onChange={this.handlePageChange}
         />
       </div>
@@ -40,7 +39,7 @@ const mapStateToProps = ({ movies, activePage }) => ({
 });
 
 const mapDispatchToProps = dispatch => ({
-  loadMovies: pageNumber => dispatch(loadMovies(pageNumber))
+  loadMovies: activePage => dispatch(loadMovies(activePage))
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Paginate);

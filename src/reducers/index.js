@@ -7,8 +7,8 @@ import pageReducer from "./pageReducer";
 const rootReducer = combineReducers({
   isLoading: loadingReducer,
   movies: movieReducer,
-  error: errorReducer
-  //activePage: pageReducer
+  error: errorReducer,
+  activePage: pageReducer
 });
 
 export default rootReducer;

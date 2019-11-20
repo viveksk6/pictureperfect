@@ -4,20 +4,22 @@ import { setMovies, setError } from "../actions";
 import { MOVIES } from "../constants";
 import { fetchMovies } from "../api/index.js";
 
-//const page;
-
-export function* handleMoviesLoad() {
+export function* handleMoviesLoad(pageNo) {
   try {
     //console.log("1");
-    const movies = yield call(fetchMovies);
-    //console.log(page);
-    yield put(setMovies(movies));
+    var p = 1;
+    if (pageNo.page !== undefined) {
+      p = pageNo.page;
+    }
+
+    const movies = yield call(fetchMovies, p);
+    console.log(pageNo);
+    yield put(setMovies(movies, p));
   } catch (error) {
     yield put(setError(error.toString()));
   }
 }
 
 export default function* watchMoviesLoad() {
-  const { page } = yield takeEvery(MOVIES.LOAD, handleMoviesLoad);
-  console.log(page);
+  yield takeEvery(MOVIES.LOAD, handleMoviesLoad);
 }
