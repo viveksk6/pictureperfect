@@ -16,4 +16,14 @@ const setError = error => ({
   error
 });
 
-export { loadMovies, setMovies, setError };
+const loadMovieDetails = movieId => ({
+  type: MOVIES.LOAD_DETAILS,
+  movieId
+});
+
+const setMovieDetails = movieDetails => ({
+  type: MOVIES.LOAD_DETAILS_SUCCESS,
+  movieDetails
+});
+
+export { loadMovies, setMovies, setError, setMovieDetails, loadMovieDetails };

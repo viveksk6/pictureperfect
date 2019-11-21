@@ -4,7 +4,7 @@ import "bootstrap/dist/css/bootstrap.min.css";
 import Navigation from "./navigation";
 import Home from "./home";
 import configureStore from "./store";
-import movieDetails from "./movieDetails";
+import movieDescription from "./movieDetails";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 
@@ -25,7 +25,7 @@ class App extends Component {
                 <Route exact path="/">
                   <Home />
                 </Route>
-                <Route path="/:movieID" component={movieDetails} exact />
+                <Route path="/:movieID" component={movieDescription} exact />
               </Switch>
             </Router>
           </div>

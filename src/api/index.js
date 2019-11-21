@@ -14,4 +14,14 @@ const fetchMovies = async pageNo => {
   //return movieData;
 };
 
-export { fetchMovies };
+const fetchMovieDetails = async movieId => {
+  const response = await fetch(`${URL}/${movieId}`);
+  const data = await response.json();
+  if (response.status >= 400) {
+    throw new Error(data.Error);
+  }
+  return data;
+  //return movieData;
+};
+
+export { fetchMovies, fetchMovieDetails };

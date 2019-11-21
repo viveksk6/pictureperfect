@@ -1,8 +1,8 @@
 import { put, call, takeEvery } from "redux-saga/effects";
 
-import { setMovies, setError } from "../actions";
+import { setMovies, setError, setMovieDetails } from "../actions";
 import { MOVIES } from "../constants";
-import { fetchMovies } from "../api/index.js";
+import { fetchMovies, fetchMovieDetails } from "../api/index.js";
 
 export function* handleMoviesLoad(pageNo) {
   try {
@@ -20,6 +20,17 @@ export function* handleMoviesLoad(pageNo) {
   }
 }
 
+export function* handleMovieDetailsLoad(movie) {
+  try {
+    const movieID = movie.movieId;
+    const movieDetails = yield call(fetchMovieDetails, movieID);
+    yield put(setMovieDetails(movieDetails));
+  } catch (error) {
+    yield put(setError(error.toString()));
+  }
+}
+
 export default function* watchMoviesLoad() {
   yield takeEvery(MOVIES.LOAD, handleMoviesLoad);
+  yield takeEvery(MOVIES.LOAD_DETAILS, handleMovieDetailsLoad);
 }

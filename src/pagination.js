@@ -6,7 +6,7 @@ import Pagination from "react-js-pagination";
 
 class Paginate extends Component {
   componentDidMount = () => {
-    loadMovies(1);
+    loadMovies(this.props.activePage);
     //console.log(this.props.activePage);
   };
   handlePageChange = page => {
@@ -24,7 +24,7 @@ class Paginate extends Component {
           disabledClass="disabled"
           activePage={this.props.activePage}
           itemsCountPerPage={3}
-          totalItemsCount={6}
+          totalItemsCount={9}
           pageRangeDisplayed={2}
           onChange={this.handlePageChange}
         />

@@ -16,25 +16,29 @@ class Cards extends Component {
     //dispatch(setMovies(movieData));
     //console.log(this.props.movies);
     //console.log(dispatch);
-    return (
-      <CardDeck>
-        {movies.map((x, index) => {
-          return (
-            <Card key={index}>
-              <Link to={{ pathname: `/${x.title}` }}>
-                <Card.Img variant="top" src={x.img} className="movie" />
-              </Link>
-              <Card.Body>
-                <Card.Title>{x.title}</Card.Title>
-                <Card.Subtitle className="mb-2 text-muted">
-                  {x.rating}
-                </Card.Subtitle>
-              </Card.Body>
-            </Card>
-          );
-        })}
-      </CardDeck>
-    );
+    if (movies !== null) {
+      return (
+        <CardDeck>
+          {movies.map((x, index) => {
+            return (
+              <Card key={index}>
+                <Link to={{ pathname: `/${x.movieId}` }}>
+                  <Card.Img variant="top" src={x.img} className="movie" />
+                </Link>
+                <Card.Body>
+                  <Card.Title>{x.title}</Card.Title>
+                  <Card.Subtitle className="mb-2 text-muted">
+                    {x.rating}
+                  </Card.Subtitle>
+                </Card.Body>
+              </Card>
+            );
+          })}
+        </CardDeck>
+      );
+    } else {
+      return <p>No movies found</p>;
+    }
   }
 }
 
