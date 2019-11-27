@@ -11,7 +11,7 @@ class Cards extends Component {
   }
 
   render() {
-    const { movies } = this.props.movies;
+    const { movies } = this.props;
     //const { dispatch } = this.props;
     //dispatch(setMovies(movieData));
     //console.log(this.props.movies);

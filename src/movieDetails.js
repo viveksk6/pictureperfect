@@ -13,32 +13,36 @@ class movieDescription extends Component {
     //console.log(this.props);
   };
   render() {
-    const { movieDetails } = this.props.movieDetails;
+    const { movieDetails } = this.props;
     //console.log(movieDetails);
-    return (
-      <div>
+    if (movieDetails[0] !== undefined) {
+      return (
         <div>
-          <img src="grey.jpg" alt="" className="bg-image" />
-          <img src={movieDetails[0].img} alt="" className="movie-image" />
-          <h2 className="movie-name">{movieDetails[0].title}</h2>
-          <h5 className="certificate">
-            ({movieDetails[0].certificate}) | {movieDetails[0].language} |{" "}
-            {movieDetails[0].genre}
-          </h5>
-          <Button variant="primary" className="shows-button">
-            View Shows
-          </Button>
+          <div>
+            <img src="grey.jpg" alt="" className="bg-image" />
+            <img src={movieDetails[0].img} alt="" className="movie-image" />
+            <h2 className="movie-name">{movieDetails[0].title}</h2>
+            <h5 className="certificate">
+              ({movieDetails[0].certificate}) | {movieDetails[0].language} |{" "}
+              {movieDetails[0].genre}
+            </h5>
+            <Button variant="primary" className="shows-button">
+              View Shows
+            </Button>
+          </div>
+          <div className="tab">
+            <Tabs defaultActiveKey="summary" id="uncontrolled-tab-example">
+              <Tab eventKey="summary" title="Summary">
+                <p>{movieDetails[0].summary}</p>
+              </Tab>
+              <Tab eventKey="review" title="Review"></Tab>
+            </Tabs>
+          </div>
         </div>
-        <div className="tab">
-          <Tabs defaultActiveKey="summary" id="uncontrolled-tab-example">
-            <Tab eventKey="summary" title="Summary">
-              <p>{movieDetails[0].summary}</p>
-            </Tab>
-            <Tab eventKey="review" title="Review"></Tab>
-          </Tabs>
-        </div>
-      </div>
-    );
+      );
+    } else {
+      return <p>No movie details found</p>;
+    }
   }
 }
 

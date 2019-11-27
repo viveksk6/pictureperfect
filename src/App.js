@@ -5,10 +5,18 @@ import Navigation from "./navigation";
 import Home from "./home";
 import configureStore from "./store";
 import movieDescription from "./movieDetails";
-import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
+import {
+  BrowserRouter as Router,
+  Switch,
+  Route,
+  Link,
+  Redirect
+} from "react-router-dom";
 import "./App.css";
 
 const store = configureStore();
+
+const Default = () => <Redirect to="/home" />;
 
 class App extends Component {
   render() {
@@ -23,6 +31,9 @@ class App extends Component {
               <Link to="/"></Link>
               <Switch>
                 <Route exact path="/">
+                  <Default />
+                </Route>
+                <Route exact path="/home">
                   <Home />
                 </Route>
                 <Route path="/:movieID" component={movieDescription} exact />

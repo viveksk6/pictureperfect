@@ -1,4 +1,4 @@
-import { put, call, takeEvery } from "redux-saga/effects";
+import { put, call, takeEvery, all } from "redux-saga/effects";
 
 import { setMovies, setError, setMovieDetails } from "../actions";
 import { MOVIES } from "../constants";
@@ -31,6 +31,8 @@ export function* handleMovieDetailsLoad(movie) {
 }
 
 export default function* watchMoviesLoad() {
-  yield takeEvery(MOVIES.LOAD, handleMoviesLoad);
-  yield takeEvery(MOVIES.LOAD_DETAILS, handleMovieDetailsLoad);
+  yield all([
+    takeEvery(MOVIES.LOAD, handleMoviesLoad),
+    takeEvery(MOVIES.LOAD_DETAILS, handleMovieDetailsLoad)
+  ]);
 }
